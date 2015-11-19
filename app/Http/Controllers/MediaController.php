@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Media;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class MediaController extends Controller
 {
+    
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +22,9 @@ class MediaController extends Controller
      */
     public function index()
     {
-        //
+        $media = Media::where('user_id', '=', \Auth::user()->id)->get();
+        
+        return view('media.index', compact('media'));
     }
 
     /**
@@ -26,7 +34,7 @@ class MediaController extends Controller
      */
     public function create()
     {
-        //
+        return view('media.create');
     }
 
     /**
@@ -37,7 +45,22 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate with a media request
+        
+        //dd($request->input());
+        
+        $request->user()->media()->create([
+           'title' => $request->input('title'),
+           'author' => $request->input('author'),
+           'type_id' => $request->input('type_id'),
+           'release_date' => $request->input('release_date'),
+           'consumed' => $request->input('consumed'),
+           'rating' => $request->input('star')
+        ]);
+        
+        \Flash::success('New media successfully added');
+        
+        return redirect('media');
     }
 
     /**
