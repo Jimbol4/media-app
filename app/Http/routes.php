@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::resource('media', 'MediaController');
+Route::patch('media/owned/{id}', 'AjaxController@updateOwned');
+Route::patch('media/rating/{id}', 'AjaxController@updateRating');

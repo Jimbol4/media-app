@@ -74,11 +74,16 @@
 	@yield('content')
         </div>
         
+        <div class='flash'>
+            Updated!
+        </div>
+    
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1-rc.1/js/select2.min.js"></script>
+        <script src='{{ asset('js/app.js') }}'></script>
         @yield('footer')
 </body>
 </html>
