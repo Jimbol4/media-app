@@ -73,6 +73,8 @@ class MediaController extends Controller
      */
     public function edit(Media $media)
     {   
+        $this->authorize('edit', $media);
+        
         return view('media.edit', compact('media'));
     }
 
@@ -85,6 +87,7 @@ class MediaController extends Controller
      */
     public function update(MediaRequest $request, Media $media)
     {
+        $this->authorize('update', $media);
         
         $type_id = $this->checkType($request->input('type_id'));
         
@@ -110,6 +113,8 @@ class MediaController extends Controller
      */
     public function destroy($media)
     {
+        $this->authorize('destroy', $media);
+        
         $media->delete();
         
         \Flash::success('Media successfully deleted');

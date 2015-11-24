@@ -15,8 +15,11 @@ class AjaxController extends Controller
         
         $isOwned = $request->has('consumed');
         
-        Media::findOrFail($mediaId)
-               ->update(['consumed' => $isOwned]);
+        $media = Media::findOrFail($mediaId);
+        
+        $this->authorize('updateOwned', $media);
+        
+        $media->update(['consumed' => $isOwned]);
         
     }
     
@@ -25,8 +28,11 @@ class AjaxController extends Controller
         
         $rating = $request->except('_token', '_method');
         
-        Media::findOrFail($mediaId)
-               ->update(['rating' => last($rating)]);
+        $media = Media::findOrFail($mediaId);
+        
+        $this->authorize('updateRating', $media);
+        
+        $media->update(['rating' => last($rating)]);
         
     }
     
