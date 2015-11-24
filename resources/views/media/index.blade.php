@@ -4,7 +4,7 @@
 <h1 class='page-heading'>Added Media:</h1>
 
 @if (!$media->isEmpty())
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered" id="datatable">
     
     <thead>
     <th>Title</th>
@@ -54,4 +54,9 @@
 @endsection
 
 @section('footer')
+<script>
+$(document).ready(function(){
+    $('#datatable').DataTable();
+});
+</script>
 @endsection

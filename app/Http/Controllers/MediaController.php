@@ -12,7 +12,10 @@ use App\Http\Requests\MediaRequest;
 
 class MediaController extends Controller
 {
-    
+    /**
+     * Filter all requests through the auth middleware (make sure users are
+     * logged in before interacting with anything here).
+     */
     public function __construct() {
         $this->middleware('auth');
     }
@@ -25,9 +28,7 @@ class MediaController extends Controller
     public function index()
     {
         $media = Media::where('user_id', '=', \Auth::user()->id)->get();
-        
-        //dd($media);
-        
+
         return view('media.index', compact('media'));
     }
 
@@ -122,6 +123,13 @@ class MediaController extends Controller
         return redirect('media');
     }
     
+    /**
+     * Check whether the submitted type ID exists, or creates a new type and
+     * then returns the id.
+     * 
+     * @param string $type_id
+     * @return integer
+     */
     protected function checkType($type_id) {
         
         // if the submitted type id is an integer, check it exists and return it.

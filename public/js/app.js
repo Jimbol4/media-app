@@ -1,5 +1,5 @@
 (function($) {
-    
+    // pub sub code snippet
     var o = $({});
     
     $.subscribe = function() {
@@ -19,7 +19,7 @@
 
 
 (function(){
-  
+    // procedure to go through when submitting ajax request
     var submitAjaxRequest = function(e){
         
         var form = $(this);
@@ -37,7 +37,8 @@
         e.preventDefault();
     };
     
-    
+    // call submitAjaxRequest above when a form with the data-remote attribute
+    // is submitted.
     $('form[data-remote]').on('submit', submitAjaxRequest);
     $('*[data-click-submits-form]').on('change', function(){
        $(this).closest('form').submit(); 
@@ -46,7 +47,7 @@
 
 
 (function() {
-    
+    // display updated notification
     $.subscribe('form.submitted', function() {
         $('.flash').fadeIn(500).delay(1000).fadeOut(500);
     });

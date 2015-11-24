@@ -11,6 +11,12 @@ use App\Media;
 class AjaxController extends Controller
 {
     
+    /**
+     * Update the consumed field on the provided media id via ajax request.
+     * 
+     * @param Request $request
+     * @param string $mediaId
+     */
     public function updateOwned(Request $request, $mediaId) {
         
         $isOwned = $request->has('consumed');
@@ -23,7 +29,12 @@ class AjaxController extends Controller
         
     }
     
-    
+    /**
+     * Update the rating field on the provided media id via ajax request.
+     * 
+     * @param Request $request
+     * @param string $mediaId
+     */
     public function updateRating(Request $request, $mediaId) {
         
         $rating = $request->except('_token', '_method');
