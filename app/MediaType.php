@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class MediaType extends Model
 {
     protected static $types;
+    protected $fillable = ['name'];
     
     public function media() {
-        return $this->belongsTo('App\Media');
+        return $this->hasMany('App\Media');
     }
     
     public static function getTypes() {

@@ -12,7 +12,7 @@ class Media extends Model
     protected $dates = ['release_date'];
     
     protected $fillable = [
-        'title', 'author', 'type_id', 'release_date', 'rating'
+        'title', 'author', 'type_id', 'release_date', 'rating', 'consumed'
     ];
     
     public function setReleaseDateAttribute($date) {
@@ -28,6 +28,6 @@ class Media extends Model
     }
     
     public function type() {
-        return $this->hasOne('App\MediaType');
+        return $this->belongsTo('App\MediaType');
     }
 }
